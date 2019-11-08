@@ -1,0 +1,35 @@
+
+CREATE APPLICATION MySQLHazelcastCDC;
+
+CREATE OR REPLACE SOURCE mysql_docker USING MysqlReader  ( 
+  Compression: false,
+  DatabaseName: 'hz',
+  connectionRetryPolicy: 'retryInterval=30, maxRetries=3',
+  FilterTransactionBoundaries: true,
+  Username: 'hz',
+  Password_encrypted: true,
+  SendBeforeImage: true,
+  Database: 'hz',
+  ConnectionURL: 'mysql://192.168.1.104:33306',
+  Tables: 'product_inv',
+  adapterName: 'MysqlReader',
+  Password: 'oUX+0+ch4pQ=',
+  Password_encrypted: 'true'
+ ) 
+OUTPUT TO mysql_docker_ChangeDataStream ;
+
+CREATE OR REPLACE TARGET MySQLHazelcastCDC_HazelcastTarget1 USING HazelcastWriter  ( 
+  mode: 'INCREMENTAL',
+  maps: 'hz.product_inv,ProductInv',
+  Password_encrypted: 'true',
+  BatchPolicy: 'eventCount:10000,Interval:30',
+  ConnectionURL: '192.168.1.104:5701',
+  adapterName: 'HazelcastWriter',
+  ormFile: '/opt/striim/productInv_orm.xml',
+  Clustername: 'dev',
+  Password: 'brwnrvrW2SZnTL8nDdgCaA=='
+ ) 
+INPUT FROM mysql_docker_ChangeDataStream;
+
+END APPLICATION MySQLHazelcastCDC;
+
