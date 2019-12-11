@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm" version="2.4">
 
-    <entity name="ProductInv" class="com.hasan.pojo.ProductInv" >
-        <table name="hz.product_inv"/>
+    <entity name="ProductInv" class="ProductInv" >
+        <table name="hz.composite_product_inv"/>
+        <id-class class="ProductKey"/>
         <attributes>
             <id name ="sku" attribute-type="Long"  >
                 <column nullable="false" name="SKU" />
+            </id>
+            <id name ="skuHash" attribute-type="String"  >
+                <column nullable="false" name="SKU_HASH" />
             </id>
             <basic name="stock" attribute-type="double" >
                 <column nullable="false" name="STOCK"  />

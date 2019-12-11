@@ -28,10 +28,11 @@ public class StriimMysqlHzCdcApplication implements CommandLineRunner {
         log.info("StriimMysqlHzCdcApplication...");
 
         Random r = new Random();
-        final long NANOSEC_PER_SEC = 1000l * 1000 * 1000;
+        final long NANOSEC_PER_SEC = 1000l*1000*1000;
         long startTime = System.nanoTime();
-        while ((System.nanoTime() - startTime) < 60 * NANOSEC_PER_SEC) {
-            repository.save(new ProductInv(r.nextDouble(), "product" + r.nextInt(), new Date()));
+        while ((System.nanoTime()-startTime)< 60 * NANOSEC_PER_SEC){
+            repository.save(new ProductInv(r.nextLong(), "sku-hash-" + r.nextInt(),
+                    r.nextDouble(),"product" + r.nextInt(), new Date()));
         }
 
         System.out.println("\nfindAll()");
