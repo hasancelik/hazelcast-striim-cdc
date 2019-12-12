@@ -1,3 +1,5 @@
+package com.hasan.pojo;
+
 import java.io.Serializable;
 
 public class ProductKey implements Serializable {

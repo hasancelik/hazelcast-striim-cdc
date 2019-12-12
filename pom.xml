@@ -57,6 +57,7 @@
             <artifactId>hazelcast-client</artifactId>
             <version>${hazelcast.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>

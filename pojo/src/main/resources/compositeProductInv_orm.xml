@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm" version="2.4">
 
-    <entity name="ProductInv" class="ProductInv" >
+    <entity name="ProductInv" class="com.hasan.pojo.ProductInv" >
         <table name="hz.composite_product_inv"/>
-        <id-class class="ProductKey"/>
+        <id-class class="com.hasan.pojo.ProductKey"/>
         <attributes>
             <id name ="sku" attribute-type="Long"  >
                 <column nullable="false" name="SKU" />
