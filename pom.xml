@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <hazelcast.version>3.10.6-striim</hazelcast.version>
+        <hazelcast.version>3.12.13</hazelcast.version>
     </properties>
 
     <modules>
